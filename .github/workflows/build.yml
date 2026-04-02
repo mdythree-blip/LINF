@@ -12,17 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download source code
-        run: |
-          curl -L -o CloudreveClient.zip "https://pan.linfshare.top/f/bMFA/CloudreveClient.zip"
-          unzip -o CloudreveClient.zip -d .
-          chmod +x ./gradlew
-
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Grant execute permission
+        run: chmod +x ./gradlew
 
       - name: Build debug APK
         run: ./gradlew assembleDebug
